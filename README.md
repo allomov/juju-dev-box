@@ -30,7 +30,7 @@ It also contains:
 
 ```
 git clone https://github.com/Altoros/juju-dev-box.git
-cd cf-vagrant-installer
+cd juju-dev-box
 ```
 
 ### Provision The VM
@@ -41,9 +41,10 @@ vagrant up
 
 ## Test your VM
 
-### juju environment
-SSH into the VM
-> juju-gui takes some time to deploy so your output may differ
+### Juju environment
+SSH into the VM (vagrant ssh)
+> juju-gui service takes some time to deploy so your output may differ.
+> If it stays in 'pending' status for a long time then read the Troubleshooting section bellow.
 
 ```
 vagrant ssh
@@ -81,16 +82,16 @@ services:
 ```
 
 ### Juju GUI
-As you can see above, the GUI has been deployed and is listening on http://10.0.3.170
+As you can see above, the GUI has been deployed and is listening on http://10.0.3.170.
 This is the LXC container assigned IP and won't be accessible from outside the VM.
-In order to enable that run the following script from the Host machine. It may require your root password
+In order to enable that, run the following script from the Host machine. It may require your root password.
 
 ```
 cd juju-dev-box
 ./scripts/add-route
 ```
 
-You should be able to load the Juju GUI from your favourite browser
+You should be able to load the Juju GUI from your favourite browser now.
 
 > What is the password???
 ```
@@ -110,10 +111,10 @@ This may be for two things:
 ```
 ps ax | grep wget
 ```
-If you get an output then grab a coffee/tea/mate and wait
+If you get an output containing the process running, then grab a coffee/tea/mate and wait.
 
 - Firewall is still enabled
-Disable it, destroy environment and re-bootstrap it
+Disable it, destroy environment and re-bootstrap it.
 
 ```
 sudo ufw disable
@@ -121,7 +122,7 @@ juju destroy-environment local
 juju bootstrap
 ```
 
-Redeploy for example Juju GUI
+Redeploy for example Juju GUI.
 
 ```
 juju deploy juju-gui
