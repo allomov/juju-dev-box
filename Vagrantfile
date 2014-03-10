@@ -12,19 +12,12 @@ Vagrant.configure('2') do |config|
   config.vm.network :private_network, ip: '192.168.50.4'
 
   config.vm.synced_folder ".", "/vagrant", mount_options: ["dmode=755", "fmode=755"]
-  #config.vm.synced_folder 'cf-charms', '/home/vagrant/cf-charms', mount_options: ['dmode=755', 'fmode=755']
-
 
   config.vm.provider :virtualbox do |vb|
 
     vb.customize ['modifyvm', :id, '--memory', VM_MEMORY]
     vb.customize ['modifyvm', :id, '--cpus', VM_CORES]
   end
-
-  #config.vm.provision :puppet do |puppet|
-  #  puppet.manifests_path = 'manifests'
-  #  puppet.manifest_file  = 'base.pp'
-  #end
 
   config.vm.provision :chef_solo do |chef|
   #   cookbooks.cookbooks_path = '../my-recipes/cookbooks'
