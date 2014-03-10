@@ -106,12 +106,22 @@ vagrant@cf-juju:~$ cat .juju/environments/local.jenv | grep admin-secret
 > You have to be inside the VM (vagrant ssh)
 
 This may be for two things:
-- Container image is been download. You can check it:
+- Container cache image is been download (223 MB). You can check it:
 
 ```
 ps ax | grep wget
 ```
-If you get an output containing the process running, then grab a coffee/tea/mate and wait.
+If you get an output containing a process running, then grab a coffee/tea/mate and wait.
+
+To check it's progress:
+```
+sudo watch 'ls -lh /var/cache/lxc/cloud-precise'
+Every 2.0s: ls -lh /var/cache/lxc/cloud-precise                                                                                                                                    Mon Mar 10 04:01:57 2014
+
+total 100M
+-rw-r--r-- 1 root root 100M Mar 10 04:01 ubuntu-12.04-server-cloudimg-amd64-root.tar.gz
+
+```
 
 - Firewall is still enabled
 Disable it, destroy environment and re-bootstrap it.
