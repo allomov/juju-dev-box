@@ -1,9 +1,3 @@
-execute "avoid anoying: WARNING! Your environment specifies an invalid locale." do
-  command <<-BASH
-    locale-gen UTF-8
-  BASH
-end
-
 execute "enable zookeeper to connecting back to the host by disabling firewall" do
   # due to an oppen bug: https://bugs.launchpad.net/juju/+bug/998238
   command <<-BASH
